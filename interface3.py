@@ -146,7 +146,7 @@ while True:
         for (pt_x, pt_y) in coords[36:68]:
             cv2.circle(frame, (pt_x, pt_y), 2, (0, 255, 255), -1)
 
-    # Update graph history
+     # Update graph history
     ear_hist[:-1] = ear_hist[1:]
     ear_hist[-1] = ear
     mar_hist[:-1] = mar_hist[1:]
@@ -176,25 +176,25 @@ while True:
     cv2.putText(sidebar, f"SYSTEM FPS: {int(fps)}", (20, 260),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.7, fps_color, 2)
 
-    cv2.putText(sidebar, f"EAR (Target > {EYE_AR_THRESH}): {ear:.2f}", (20, 310),
+    cv2.putText(sidebar, f"EAR (Target > {EYE_AR_THRESH}): {ear:.2f}", (20, 280),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
     ear_width = min(200, int((ear / 0.40) * 200))
     ear_color = (0, 255, 0) if ear > EYE_AR_THRESH else (0, 0, 255)
-    cv2.rectangle(sidebar, (20, 325), (220, 345), (100, 100, 100), 2)
-    cv2.rectangle(sidebar, (20, 325), (20 + ear_width, 345), ear_color, -1)
+    cv2.rectangle(sidebar, (20, 295), (220, 315), (100, 100, 100), 2)
+    cv2.rectangle(sidebar, (20, 295), (20 + ear_width, 315), ear_color, -1)
 
-    cv2.putText(sidebar, f"MAR (Target < {MOUTH_AR_THRESH}): {mar:.2f}", (20, 380),
+    cv2.putText(sidebar, f"MAR (Target < {MOUTH_AR_THRESH}): {mar:.2f}", (20, 330),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
     mar_width = min(200, int((mar / 1.0) * 200))
     mar_color = (0, 255, 0) if mar < MOUTH_AR_THRESH else (0, 0, 255)
-    cv2.rectangle(sidebar, (20, 395), (220, 415), (100, 100, 100), 2)
-    cv2.rectangle(sidebar, (20, 395), (20 + mar_width, 415), mar_color, -1)
+    cv2.rectangle(sidebar, (20, 345), (220, 365), (100, 100, 100), 2)
+    cv2.rectangle(sidebar, (20, 345), (20 + mar_width, 365), mar_color, -1)
 
     # Status box
     status_bg = (0, 255, 0) if status == "NON-DROWSY" else (0, 0, 255)
-    cv2.rectangle(sidebar, (20, 450), (300, 530), status_bg, -1)
+    cv2.rectangle(sidebar, (20, 380), (300, 460), status_bg, -1)
     text_x = 70 if status == "NON-DROWSY" else 105
-    cv2.putText(sidebar, status, (text_x, 500),
+    cv2.putText(sidebar, status, (text_x, 430),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 0), 3)
 
     # Final HUD
